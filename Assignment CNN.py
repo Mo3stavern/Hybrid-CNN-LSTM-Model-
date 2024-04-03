@@ -14,7 +14,7 @@ from tensorflow.keras.layers import LSTM, Conv1D, MaxPooling1D, Dense, Dropout
 from tensorflow.keras.models import load_model
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 os.chdir(r"C:\Users\User\OneDrive\Dokumente\Uni\12. Big Data and Deep Learning\Data")
-#%% Check working directory
+#%% Checking working directory
 print(os.getcwd())
 #%% Loading provided datasets 
 amzn = pd.read_csv("AMZN.csv")
@@ -30,7 +30,7 @@ intc["Return"] = intc["Close"].pct_change()
 amzn = amzn.dropna()
 fb = fb.dropna()
 intc = intc.dropna()
-#%% Check if data is loaded correctly because there was a compatibility issue with the dates
+#%% Checking if data is loaded correctly because there was a compatibility issue with the dates
 print(amzn.head(50))
 
 #%% define the provided training, validation and test dates
@@ -60,7 +60,7 @@ test_amzn["Label"] = (test_amzn["Return"] > 0).astype(int)
 
 # Check if everything is correctly implemented
 train_amzn.head(), val_amzn.head(), test_amzn.head()
-#%% Define sequences from the data two create prediction window of 14 days
+#%% Defining sequences from the data two create prediction window of 14 days
 def create_sequences(data, sequence_length=14):
 
     sequences = []
@@ -98,7 +98,7 @@ search_space = {
     "learning_rate": [0.001, 0.01, 0.1],
     "batch_size": [32, 64, 128]
 }
-#%% with this function we perform random search over hyperparameters in the search space
+#%% perform random search over hyperparameters in the search space
 #reference: https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html
 def random_search(model_fn, search_space, n_iter, search_dir): 
     results = []  # initialise an empty set 
