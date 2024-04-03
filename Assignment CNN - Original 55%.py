@@ -123,8 +123,6 @@ def random_search(model_fn, search_space, n_iter, search_dir):
         params = {k: v[np.random.randint(len(v))] for k, v in search_space.items()}
 
         history, model = model_fn(params)
-        
-        # Assuming that your history object is a dictionary with "val_accuracy" key
         epochs = np.argmax(history.history["val_accuracy"]) + 1 
         result = {k: v[epochs - 1] for k, v in history.history.items()}
         params["epochs"] = epochs 
